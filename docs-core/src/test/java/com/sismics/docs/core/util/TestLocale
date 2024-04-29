@@ -1,0 +1,30 @@
+import org.junit.Test;
+
+import java.util.Locale;
+
+import static org.junit.Assert.assertEquals;
+
+public class LocaleUtilTest {
+
+    @Test
+    public void testGetLocale() {
+        // Test case 1: Locale code is null or empty
+        Locale result1 = LocaleUtil.getLocale(null);
+        assertEquals(Locale.ENGLISH, result1);
+
+        Locale result2 = LocaleUtil.getLocale("");
+        assertEquals(Locale.ENGLISH, result2);
+
+        // Test case 2: Locale code is only language
+        Locale result3 = LocaleUtil.getLocale("fr");
+        assertEquals(new Locale("fr"), result3);
+
+        // Test case 3: Locale code has language and country
+        Locale result4 = LocaleUtil.getLocale("fr_FR");
+        assertEquals(new Locale("fr", "FR"), result4);
+
+        // Test case 4: Locale code has language, country, and variant
+        Locale result5 = LocaleUtil.getLocale("fr_FR_var");
+        assertEquals(new Locale("fr", "FR", "var"), result5);
+    }
+}
